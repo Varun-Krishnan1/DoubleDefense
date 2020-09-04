@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowController : MonoBehaviour
+public class BowController : Weapon
 {
     [Header("Bow Attributes")]
     public int damage; 
@@ -11,6 +11,7 @@ public class BowController : MonoBehaviour
     public float reloadTime;
     public Collider2D col;
     public GameObject arrow;
+    public Timer timer; 
 
     // -- touch controls 
     private Vector3 dragStartPos;
@@ -57,6 +58,8 @@ public class BowController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
+
+            // -- if reloaded 
             if (curReloadTime < 0f)
             {
                 if (touch.phase == TouchPhase.Began)
@@ -87,6 +90,7 @@ public class BowController : MonoBehaviour
                     reload = true;              // -- tell update function to reload on next frame 
                 }
             }
+
         }
 
     }
@@ -117,8 +121,6 @@ public class BowController : MonoBehaviour
         draggingPos.z = 0f;
 
         // -- rotation 
-        print("1:" + dragStartPos);
-        print("2:" + draggingPos);
         float angle = Mathf.Atan2(dragStartPos.y - draggingPos.y, dragStartPos.x - draggingPos.x) * Mathf.Rad2Deg; 
         currentArrow.transform.rotation = Quaternion.Euler(0, 0, angle); 
 
@@ -139,5 +141,8 @@ public class BowController : MonoBehaviour
         // -- must change to dynamic for force to be added 
         arrowRB.isKinematic = false;
         arrowRB.AddForce(clampedForce, ForceMode2D.Impulse);
+
+        // -- start UI timer 
+        timer.StartTimer(reloadTime); 
     }
 }

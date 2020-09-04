@@ -100,6 +100,7 @@ MonoBehaviour:
   reloadTime: 1
   timeTillShot: 1
   animator: {fileID: 2877940843436321766}
+  timer: {fileID: 0}
 --- !u!95 &2877940843436321766
 Animator:
   serializedVersion: 3

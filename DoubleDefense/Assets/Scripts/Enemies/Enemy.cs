@@ -43,4 +43,12 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject); 
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Finish")
+        {
+            print("You lose..."); 
+        }
+    }
 }

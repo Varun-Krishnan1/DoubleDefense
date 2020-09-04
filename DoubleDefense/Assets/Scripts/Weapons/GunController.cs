@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController : Weapon
 {
     [Header("Gun Attributes")]
     public int damage;
@@ -10,8 +10,8 @@ public class GunController : MonoBehaviour
     public float timeTillShot;
 
     [Header("Components")]
-    public Animator animator; 
-
+    public Animator animator;
+    public Timer timer; 
 
     // -- touch and reloading 
     private float curReloadTime; 
@@ -51,6 +51,7 @@ public class GunController : MonoBehaviour
 
     private IEnumerator ShootAfterDelay(GameObject enemy)
     {
+        timer.StartTimer(reloadTime); 
         enemy.GetComponent<Enemy>().ShowMark(); 
         yield return new WaitForSeconds(timeTillShot);
         ShootEnemy(enemy); 

@@ -102,6 +102,7 @@ MonoBehaviour:
   reloadTime: 1
   col: {fileID: 7849261620661128901}
   arrow: {fileID: 3358352631224316449, guid: b632f89e06a76b84ea9ce1364af5e7c2, type: 3}
+  timer: {fileID: 0}
 --- !u!61 &7849261620661128901
 BoxCollider2D:
   m_ObjectHideFlags: 0
