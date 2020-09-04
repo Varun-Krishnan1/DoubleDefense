@@ -11113,6 +11113,14 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1351740241}
+    - target: {fileID: 1111809175, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
+      propertyPath: reloadTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111809175, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
+      propertyPath: timeTillShot
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 1361779533285167348, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -11147,7 +11155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11200,7 +11208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2049886763464815112, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2049886763464815112, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11265,7 +11273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
