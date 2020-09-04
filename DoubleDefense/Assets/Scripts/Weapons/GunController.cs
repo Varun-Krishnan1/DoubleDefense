@@ -7,7 +7,11 @@ public class GunController : MonoBehaviour
     [Header("Gun Attributes")]
     public int damage;
     public float reloadTime;
-    public float timeTillShot; 
+    public float timeTillShot;
+
+    [Header("Components")]
+    public Animator animator; 
+
 
     // -- touch and reloading 
     private float curReloadTime; 
@@ -21,6 +25,8 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("isShooting", false);  // -- reset animation variable after shooting 
+
         curReloadTime -= Time.deltaTime; 
 
         // -- getting touch input 
@@ -52,6 +58,7 @@ public class GunController : MonoBehaviour
 
     private void ShootEnemy(GameObject enemy)
     {
+        animator.SetBool("isShooting", true); 
         enemy.GetComponent<Enemy>().TakeDamage(damage); 
     }
 }

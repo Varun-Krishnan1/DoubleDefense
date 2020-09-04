@@ -232,6 +232,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!61 &102097246 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7849261620661128901, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+  m_PrefabInstance: {fileID: 5814937767907246573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5814937767290594980, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 102097246}
     - target: {fileID: 5814937767290594984, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_Name
       value: Bow
@@ -807,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.62
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_LocalPosition.z

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5814937767290594986}
   - component: {fileID: 5814937767290594987}
-  - component: {fileID: 5814937767290594981}
   - component: {fileID: 5814937767290594980}
+  - component: {fileID: 7849261620661128901}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5814937767290594984}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.51, y: 2.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -73,33 +73,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a417a3c27046750488f6e169ecb52962, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eca909721fd285c46a616912224d5a74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.07, y: 3.55}
+  m_Size: {x: 0.97, y: 3.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5814937767290594981
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814937767290594984}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.76469374, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.860249
 --- !u!114 &5814937767290594980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,5 +100,31 @@ MonoBehaviour:
   power: 10
   maxDrag: 5
   reloadTime: 1
-  col: {fileID: 5814937767290594981}
+  col: {fileID: 7849261620661128901}
   arrow: {fileID: 3358352631224316449, guid: b632f89e06a76b84ea9ce1364af5e7c2, type: 3}
+--- !u!61 &7849261620661128901
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814937767290594984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14447713, y: -0.013635635}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.97, y: 3.55}
+    newSize: {x: 0.97, y: 3.55}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.617662, y: 4.571472}
+  m_EdgeRadius: 0
