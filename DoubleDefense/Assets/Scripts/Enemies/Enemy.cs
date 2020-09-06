@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 // -- BASE CLASS ALL ENEMIES INHERIT FROM 
@@ -23,7 +24,9 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Other")]
     public GameObject mark;
+    public ParticleSystem explosionEffect;
 
+    protected bool dying; 
     protected bool marked;
     protected Vector3 pos; 
 
@@ -35,13 +38,16 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if(straightLeft)
+        if (!dying)
         {
-            StraightLeftMovement();
-        }
-        else if(sineWave)
-        {
-            SineMovement(); 
+            if (straightLeft)
+            {
+                StraightLeftMovement();
+            }
+            else if (sineWave)
+            {
+                SineMovement();
+            }
         }
     }
 
@@ -51,7 +57,7 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
@@ -60,10 +66,29 @@ public abstract class Enemy : MonoBehaviour
         return this.marked;
     }
 
-    protected void Die()
+    protected IEnumerator Die()
     {
-        GameManager.instance.AddEnemyKilled(); 
-        Destroy(gameObject);
+        // -- this condition prevents explosion effect from occuring multiple times 
+        if (!dying)
+        {
+            // -- stop movement 
+            dying = true;
+
+            // -- hide sprite 
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+            this.mark.SetActive(false);
+
+            // -- exploding effect
+            explosionEffect.Play();
+
+            // -- get explosion duration 
+            var main = explosionEffect.main;
+            yield return new WaitForSeconds(main.duration);
+
+
+            GameManager.instance.AddEnemyKilled();
+            Destroy(gameObject);
+        }
     }
 
     public void ShowMark()
