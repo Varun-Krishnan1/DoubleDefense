@@ -9,14 +9,12 @@ public class BowController : Weapon
     public float power = 10f;
     public float maxDrag = 5f;
     public float reloadTime;
-    public Collider2D col;
     public GameObject arrow;
     public Timer timer; 
 
     // -- touch controls 
     private Vector3 dragStartPos;
     private Touch touch;
-    private bool moveAllowed;
 
     // -- reloading 
     private float curReloadTime;
@@ -65,29 +63,17 @@ public class BowController : Weapon
                 if (touch.phase == TouchPhase.Began)
                 {
                     Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                    
-                    // -- only move if touching in area of bow 
-                    Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
-                    if (col == touchedCollider)
-                    {
-                        moveAllowed = true;
-                        DragStart();
-                    }
+                    DragStart();
                 }
 
-                if (touch.phase == TouchPhase.Moved && moveAllowed)
+                if (touch.phase == TouchPhase.Moved)
                 {
                     Dragging();
                 }
 
-                if (touch.phase == TouchPhase.Ended && moveAllowed)
+                if (touch.phase == TouchPhase.Ended)
                 {
                     DragRelease();
-                    moveAllowed = false;
-
-                    // -- start reloading time 
-                    curReloadTime = reloadTime;
-                    reload = true;              // -- tell update function to reload on next frame 
                 }
             }
 
@@ -138,11 +124,28 @@ public class BowController : Weapon
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
 
-        // -- must change to dynamic for force to be added 
-        arrowRB.isKinematic = false;
-        arrowRB.AddForce(clampedForce, ForceMode2D.Impulse);
+        // -- only do arrow if force is not (0,0) because that is a tap 
+        if((Vector2)force != Vector2.zero)
+        {
+            // -- must change to dynamic for force to be added 
+            arrowRB.isKinematic = false;
+            arrowRB.AddForce(clampedForce, ForceMode2D.Impulse);
 
-        // -- start UI timer 
-        timer.StartTimer(reloadTime); 
+            // -- start reloading time 
+            curReloadTime = reloadTime;
+            reload = true;              // -- tell update function to reload on next frame 
+
+            // -- start UI timer 
+            timer.StartTimer(reloadTime);
+        }
+        
+
+    }
+
+    public override void Activate()
+    {
+        Color c = this.GetComponent<SpriteRenderer>().color;
+        c.a = 1f;
+        this.GetComponent<SpriteRenderer>().color = c;
     }
 }

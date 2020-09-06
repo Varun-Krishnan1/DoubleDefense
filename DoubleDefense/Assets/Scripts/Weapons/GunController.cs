@@ -6,21 +6,23 @@ public class GunController : Weapon
 {
     [Header("Gun Attributes")]
     public int damage;
+    public int maxShots; 
     public float reloadTime;
     public float timeTillShot;
 
     [Header("Components")]
+    public BulletCounter bulletCounter; 
     public Animator animator;
     public Timer timer; 
 
     // -- touch and reloading 
     private float curReloadTime; 
-    private Touch touch; 
-
+    private Touch touch;  
+    private int shotsLeft;
 
     void Start()
     {
-        
+        shotsLeft = maxShots; 
     }
 
     void Update()
@@ -33,17 +35,26 @@ public class GunController : Weapon
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if (curReloadTime < 0f)
+            if (shotsLeft > 0 && touch.phase == TouchPhase.Ended)
             {
                 Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
                 // -- only shoot if touching enemy 
                 Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
                 Enemy enemy = touchedCollider.gameObject.GetComponent<Enemy>(); 
-                if (enemy)
+                if (enemy && !enemy.isMarked())
                 {
                     StartCoroutine(ShootAfterDelay(touchedCollider.gameObject));
-                    curReloadTime = reloadTime; 
+                    shotsLeft -= 1;
+                    bulletCounter.SetBulletNumber(shotsLeft); 
+
+
+                    // -- if shots are now zero then start timer
+                    if(shotsLeft == 0)
+                    {
+                        timer.StartTimer(reloadTime);
+                    }
+
                 }
             }
         }
@@ -51,7 +62,6 @@ public class GunController : Weapon
 
     private IEnumerator ShootAfterDelay(GameObject enemy)
     {
-        timer.StartTimer(reloadTime); 
         enemy.GetComponent<Enemy>().ShowMark(); 
         yield return new WaitForSeconds(timeTillShot);
         ShootEnemy(enemy); 
@@ -60,6 +70,21 @@ public class GunController : Weapon
     private void ShootEnemy(GameObject enemy)
     {
         animator.SetBool("isShooting", true); 
-        enemy.GetComponent<Enemy>().TakeDamage(damage); 
+        if(enemy)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
+
+    // -- CALLED BY TIMER DO NOT CALL MANUALLY 
+    public override void Activate()
+    {
+        Color c = this.GetComponent<SpriteRenderer>().color;
+        c.a = 1f;
+        this.GetComponent<SpriteRenderer>().color = c;
+        this.shotsLeft = maxShots;
+
+        bulletCounter.SetBulletNumber(shotsLeft);
+
     }
 }

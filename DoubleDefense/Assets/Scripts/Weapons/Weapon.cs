@@ -13,10 +13,5 @@ public abstract class Weapon : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = c; 
     }
 
-    public void Activate()
-    {
-        Color c = this.GetComponent<SpriteRenderer>().color;
-        c.a = 1f;
-        this.GetComponent<SpriteRenderer>().color = c;
-    }
+    public abstract void Activate(); 
 }

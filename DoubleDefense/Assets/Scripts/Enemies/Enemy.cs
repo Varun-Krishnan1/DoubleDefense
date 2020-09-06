@@ -2,53 +2,85 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+// -- BASE CLASS ALL ENEMIES INHERIT FROM 
+public abstract class Enemy : MonoBehaviour
 {
 
-    [Header("Enemy Attributes")]
+    [Header("Health")]
     public int health;
+
+    [Header("Movement")]
     public int moveSpeedX;
     public int moveSpeedY;
 
-    [Header("Other")]
-    public GameObject mark; 
+    [Header("Standard Movement")]
+    public bool straightLeft;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Sine Movement")]
+    public bool sineWave;
+    public float frequency;
+    public float height; 
+
+    [Header("Other")]
+    public GameObject mark;
+
+    protected bool marked;
+    protected Vector3 pos; 
+
+    protected void Start()
     {
-        
+        pos = transform.position; 
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        transform.Translate(-Vector3.right * moveSpeedX * Time.deltaTime); 
+        if(straightLeft)
+        {
+            StraightLeftMovement();
+        }
+        else if(sineWave)
+        {
+            SineMovement(); 
+        }
     }
+
 
     public void TakeDamage(int damage)
     {
-        health -= damage; 
-        if(health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
-            Die(); 
+            Die();
         }
+    }
+
+    public bool isMarked()
+    {
+        return this.marked;
+    }
+
+    protected void Die()
+    {
+        GameManager.instance.AddEnemyKilled(); 
+        Destroy(gameObject);
     }
 
     public void ShowMark()
     {
-        mark.SetActive(true); 
+        mark.SetActive(true);
+        marked = true;
     }
 
-    private void Die()
+    protected void StraightLeftMovement()
     {
-        Destroy(gameObject); 
+        transform.Translate(-Vector3.right * moveSpeedX * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    protected void SineMovement()
     {
-        if (col.gameObject.tag == "Finish")
-        {
-            print("You lose..."); 
-        }
+        pos -= transform.right * Time.deltaTime * moveSpeedX;
+        transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * height; 
     }
+
 }
