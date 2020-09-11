@@ -9,8 +9,12 @@ public class BowController : Weapon
     public float power = 10f;
     public float maxDrag = 5f;
     public float reloadTime;
+
+
+    [Header("Bow Components")] 
     public GameObject arrow;
-    public Timer timer; 
+    public Timer timer;
+    public Animator animator; 
 
     // -- touch controls 
     private Vector3 dragStartPos;
@@ -33,6 +37,7 @@ public class BowController : Weapon
 
     void Update()
     {
+        animator.SetBool("isReleasing", false); // -- reset animation variable after releasing 
 
         //for(int i = 0; i < Input.touchCount; i++)
         //{
@@ -64,6 +69,9 @@ public class BowController : Weapon
                 {
                     Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                     DragStart();
+
+                    // -- animation 
+                    animator.SetBool("isCocking", true); 
                 }
 
                 if (touch.phase == TouchPhase.Moved)
@@ -74,6 +82,10 @@ public class BowController : Weapon
                 if (touch.phase == TouchPhase.Ended)
                 {
                     DragRelease();
+
+                    // -- animation 
+                    animator.SetBool("isCocking", false);
+                    animator.SetBool("isReleasing", true);
                 }
             }
 
