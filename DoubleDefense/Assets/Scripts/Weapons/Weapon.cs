@@ -6,12 +6,8 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
 
-    public void InActivate()
-    {
-        Color c = this.GetComponent<SpriteRenderer>().color;
-        c.a = .5f;
-        this.GetComponent<SpriteRenderer>().color = c; 
-    }
+
+    public abstract void InActivate(); 
 
     public abstract void Activate(); 
 }

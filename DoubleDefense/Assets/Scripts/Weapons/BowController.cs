@@ -14,7 +14,8 @@ public class BowController : Weapon
     [Header("Bow Components")] 
     public GameObject arrow;
     public Timer timer;
-    public Animator animator; 
+    public Animator animator;
+    public GunController gun; 
 
     // -- touch controls 
     private Vector3 dragStartPos;
@@ -62,12 +63,11 @@ public class BowController : Weapon
         {
             touch = Input.GetTouch(0);
 
-            // -- if reloaded 
-            if (curReloadTime < 0f)
+            // -- if reloaded and not on crosshair 
+            if (curReloadTime < 0f && !gun.isMovingCrosshair)
             {
                 if (touch.phase == TouchPhase.Began)
                 {
-                    Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                     DragStart();
 
                     // -- animation 
@@ -154,10 +154,20 @@ public class BowController : Weapon
 
     }
 
+    // -- CALLED BY TIMER DO NOT CALL MANUALLY 
     public override void Activate()
     {
         Color c = this.GetComponent<SpriteRenderer>().color;
         c.a = 1f;
+        this.GetComponent<SpriteRenderer>().color = c;
+    }
+
+    // -- CALLED BY TIMER DO NOT CALL MANUALLY 
+
+    public override void InActivate()
+    {
+        Color c = this.GetComponent<SpriteRenderer>().color;
+        c.a = .5f;
         this.GetComponent<SpriteRenderer>().color = c;
     }
 }
