@@ -2323,6 +2323,36 @@ RectTransform:
   m_AnchoredPosition: {x: -562, y: -174}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1910069427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910069428}
+  m_Layer: 0
+  m_Name: ArrowPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910069428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910069427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.58, y: 0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1666078393}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961969500
 GameObject:
   m_ObjectHideFlags: 0
@@ -12450,6 +12480,10 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 1285581494}
+    - target: {fileID: 5814937767290594980, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: arrowPosition
+      value: 
+      objectReference: {fileID: 1910069427}
     - target: {fileID: 5814937767290594984, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_Name
       value: Bow
@@ -12497,6 +12531,22 @@ PrefabInstance:
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8856320845476133393, guid: 5405f5b3814b9d84fa5fe42a8b3b298b, type: 3}
+    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: m_Size.x
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: m_Size.y
+      value: 3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}

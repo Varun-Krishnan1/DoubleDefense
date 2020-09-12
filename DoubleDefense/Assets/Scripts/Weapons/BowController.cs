@@ -13,6 +13,7 @@ public class BowController : Weapon
 
     [Header("Bow Components")] 
     public GameObject arrow;
+    public GameObject arrowPosition; 
     public Timer timer;
     public Animator animator;
     public GunController gun; 
@@ -71,7 +72,8 @@ public class BowController : Weapon
                     DragStart();
 
                     // -- animation 
-                    animator.SetBool("isCocking", true); 
+                    currentArrow.GetComponent<ArrowController>().LoadAnimation();
+                    animator.SetBool("isLoading", true); 
                 }
 
                 if (touch.phase == TouchPhase.Moved)
@@ -84,7 +86,7 @@ public class BowController : Weapon
                     DragRelease();
 
                     // -- animation 
-                    animator.SetBool("isCocking", false);
+                    animator.SetBool("isLoading", false);
                     animator.SetBool("isReleasing", true);
                 }
             }
@@ -96,7 +98,7 @@ public class BowController : Weapon
     void AddNewArrow()
     {
         // -- set current arrow and its associated components 
-        currentArrow = Instantiate(arrow, this.transform.position, this.transform.rotation);
+        currentArrow = Instantiate(arrow, arrowPosition.transform.position, arrowPosition.transform.rotation);
         currentArrow.GetComponent<ArrowController>().SetDamage(damage); 
         lr = currentArrow.GetComponent<LineRenderer>();
         arrowRB = currentArrow.GetComponent<Rigidbody2D>();
@@ -105,7 +107,6 @@ public class BowController : Weapon
 
     void DragStart()
     {
-
         dragStartPos = Camera.main.ScreenToWorldPoint(touch.position);
         dragStartPos.z = 0f;
         lr.positionCount = 1;
@@ -139,6 +140,9 @@ public class BowController : Weapon
         // -- only do arrow if force is not (0,0) because that is a tap 
         if((Vector2)force != Vector2.zero)
         {
+            // -- start arrow shooting animation 
+            currentArrow.GetComponent<ArrowController>().ReleaseAnimation(); 
+
             // -- must change to dynamic for force to be added 
             arrowRB.isKinematic = false;
             arrowRB.AddForce(clampedForce, ForceMode2D.Impulse);

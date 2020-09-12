@@ -43,4 +43,14 @@ public class ArrowController : MonoBehaviour
     {
         Destroy(gameObject); 
     }
+    
+    public void ReleaseAnimation()
+    {
+        this.GetComponent<Animator>().SetBool("isShot", true); 
+    }
+
+    public void LoadAnimation()
+    {
+        this.transform.position = this.transform.position + new Vector3(-.2f, 0, 0); 
+    }
 }
