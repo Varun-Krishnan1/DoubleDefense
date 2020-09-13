@@ -15,6 +15,7 @@ public class GunController : Weapon
     public GameObject crosshair; 
     public BulletCounter bulletCounter; 
     public Animator animator;
+    public Animator explosionAnimator; 
     public Timer timer;
 
     // -- for bow to know if moving crosshair 
@@ -36,6 +37,8 @@ public class GunController : Weapon
     void Update()
     {
         animator.SetBool("isShooting", false);  // -- reset animation variable after shooting 
+        explosionAnimator.SetBool("isShooting", false);
+
 
         curReloadTime -= Time.deltaTime;
 
@@ -63,20 +66,6 @@ public class GunController : Weapon
                     DragRelease(); 
                     isMovingCrosshair = false; 
                 }
-
-                // -- only drag if touching crosshair 
-
-                //StartCoroutine(ShootAfterDelay(touchedCollider.gameObject));
-                //shotsLeft -= 1;
-                //bulletCounter.SetBulletNumber(shotsLeft);
-
-
-                //// -- if shots are now zero then start timer
-                //if (shotsLeft == 0)
-                //{
-                //    timer.StartTimer(reloadTime);
-                //}
-
             }
         }
     }
@@ -86,11 +75,17 @@ public class GunController : Weapon
         Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
         Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
-        if (touchedCollider.gameObject == crosshair)
+        
+        // -- so we don't get a null reference exception 
+        if(touchedCollider)
         {
-            crosshair.transform.position = touchPosition;
-            isMovingCrosshair = true;
+            if (touchedCollider.gameObject == crosshair)
+            {
+                crosshair.transform.position = touchPosition;
+                isMovingCrosshair = true;
+            }
         }
+
     }
 
     void Dragging()
@@ -124,7 +119,7 @@ public class GunController : Weapon
         for(int i = 0; i < enemies.Count; i++)
         {
             Enemy enemy = enemies[i]; 
-            if(!enemy.isMarked())
+            if(!enemy.isMarked() && shotsLeft > 0)
             {
                 StartCoroutine(ShootAfterDelay(enemy.gameObject));
                 shotsLeft -= 1;
@@ -143,7 +138,6 @@ public class GunController : Weapon
         // -- move it back to start position 
 
         crosshair.transform.position = crosshairStartPos; 
-        isMovingCrosshair = false;
 
     }
 
@@ -158,7 +152,8 @@ public class GunController : Weapon
 
     private void ShootEnemy(GameObject enemy)
     {
-        animator.SetBool("isShooting", true); 
+        animator.SetBool("isShooting", true);
+        explosionAnimator.SetBool("isShooting", true); 
         if(enemy)
         {
             enemy.GetComponent<Enemy>().TakeDamage(damage);

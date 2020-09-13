@@ -504,7 +504,7 @@ PrefabInstance:
     - target: {fileID: 5554719872813648941, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 6651808299596713905, guid: d0012a0205a0fc74f8f9e11d1b00ba00, type: 3}
+      objectReference: {fileID: 995237185379236786, guid: bda425bc0024bfb4eac25732e8afc61a, type: 3}
     - target: {fileID: 5554719872813648941, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: spawnRate
       value: 2
@@ -682,7 +682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -494, y: 130}
+  m_AnchoredPosition: {x: -463, y: 130}
   m_SizeDelta: {x: 46.376587, y: 44.187866}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338976901
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -911,27 +911,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &431815977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8814207725705677805, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-  m_PrefabInstance: {fileID: 1361779534320946274}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &431815979
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431815977}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0000009536743, y: -0.00000047683716}
-  serializedVersion: 2
-  m_Radius: 1.16
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,36 +2302,6 @@ RectTransform:
   m_AnchoredPosition: {x: -562, y: -127}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1910069427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1910069428}
-  m_Layer: 0
-  m_Name: ArrowPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1910069428
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910069427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58, y: 0.19, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1666078393}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961969500
 GameObject:
   m_ObjectHideFlags: 0
@@ -12302,7 +12251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12342,22 +12291,10 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 2118435901}
-    - target: {fileID: 1111809175, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 431815977}
-    - target: {fileID: 1111809175, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: crosshair_radius
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1361779533285167348, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 1361779533285167349, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6792815948972800468, guid: 1d19b117be6ae3e49a41d36becea9748, type: 3}
     - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.21
@@ -12401,38 +12338,6 @@ PrefabInstance:
     - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1361779533285167354, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132790388213695891, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132790388213695891, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132790388213695891, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439461527048258672, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439461527048258672, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046e5897ea12629488b9ff3a51818e5e, type: 3}
@@ -12494,7 +12399,7 @@ PrefabInstance:
     - target: {fileID: 5554719872813648941, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 7420488356073727782, guid: 0748d66bb7f0e9147a92fb3a2e233860, type: 3}
+      objectReference: {fileID: 995237185379236786, guid: bda425bc0024bfb4eac25732e8afc61a, type: 3}
     - target: {fileID: 5554719872813648941, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
       propertyPath: spawnRate
       value: 4
@@ -12516,10 +12421,6 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 1285581494}
-    - target: {fileID: 5814937767290594980, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
-      propertyPath: arrowPosition
-      value: 
-      objectReference: {fileID: 1910069427}
     - target: {fileID: 5814937767290594984, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_Name
       value: Bow
@@ -12567,22 +12468,6 @@ PrefabInstance:
     - target: {fileID: 5814937767290594986, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8856320845476133393, guid: 5405f5b3814b9d84fa5fe42a8b3b298b, type: 3}
-    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
-      propertyPath: m_Size.x
-      value: 2.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
-      propertyPath: m_Size.y
-      value: 3.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 5814937767290594987, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e171187d688b8845bcdd70d6d3aaf03, type: 3}

@@ -41,14 +41,6 @@ public class BowController : Weapon
     {
         animator.SetBool("isReleasing", false); // -- reset animation variable after releasing 
 
-        //for(int i = 0; i < Input.touchCount; i++)
-        //{
-        //    Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
-        //    //Debug.DrawLine(Vector3.zero, touchPos, Color.red); 
-        //    touchPos.z = 0; 
-        //    transform.position = touchPos; 
-        //}
-
         // -- reloading 
         curReloadTime -= Time.deltaTime; 
 
@@ -97,9 +89,13 @@ public class BowController : Weapon
 
     void AddNewArrow()
     {
-        // -- set current arrow and its associated components 
+        // -- create arrow at correct location 
         currentArrow = Instantiate(arrow, arrowPosition.transform.position, arrowPosition.transform.rotation);
+
+        // -- set arrow damage based on bow damage 
         currentArrow.GetComponent<ArrowController>().SetDamage(damage); 
+
+        // -- get the line renderer and rigidobdy of the arrow 
         lr = currentArrow.GetComponent<LineRenderer>();
         arrowRB = currentArrow.GetComponent<Rigidbody2D>();
     }
@@ -154,7 +150,13 @@ public class BowController : Weapon
             // -- start UI timer 
             timer.StartTimer(reloadTime);
         }
-        
+        // -- if it's a tap 
+        else
+        {
+            // -- put arrow back to it's pre loading spot 
+            currentArrow.GetComponent<ArrowController>().PutBackAnimation();
+        }
+
 
     }
 

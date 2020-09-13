@@ -10,24 +10,31 @@ public abstract class Enemy : MonoBehaviour
     [Header("Health")]
     public int health;
 
-    [Header("Movement")]
-    public int moveSpeedX;
-    public int moveSpeedY;
+    [Header("Left And Jump")]
+    public bool leftAndJump;
+    public float jumpDelayTime;
 
-    [Header("Standard Movement")]
-    public bool straightLeft;
 
-    [Header("Sine Movement")]
-    public bool sineWave;
-    public float frequency;
-    public float height; 
+    [Header("Crawling")]
+    public bool crawling;
+    public float crawlDelayTime; 
+
 
     [Header("Other")]
+    public Animator animator;
+    public GameObject slimeParent; 
     public GameObject mark;
     public ParticleSystem explosionEffect;
 
+    // -- private booleans 
     protected bool dying; 
     protected bool marked;
+
+    // -- private floats 
+    protected float jumpDelay;
+    protected float crawlDelay; 
+    
+    // -- other 
     protected Vector3 pos; 
 
     protected void Start()
@@ -38,15 +45,29 @@ public abstract class Enemy : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+        if(animator)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isCrawling", false);
+
+        }
+
+        // -- timers 
+        jumpDelay -= Time.deltaTime;
+        crawlDelay -= Time.deltaTime; 
+
+        // -- movement 
         if (!dying)
         {
-            if (straightLeft)
+            if(leftAndJump && jumpDelay <= 0)
             {
-                StraightLeftMovement();
+                jumpDelay = jumpDelayTime; 
+                LeftAndJump(); 
             }
-            else if (sineWave)
+            if(crawling && crawlDelay <= 0)
             {
-                SineMovement();
+                crawlDelay = crawlDelayTime;
+                Crawl();
             }
         }
     }
@@ -71,10 +92,13 @@ public abstract class Enemy : MonoBehaviour
         // -- this condition prevents explosion effect from occuring multiple times 
         if (!dying)
         {
+            GameManager.instance.AddEnemyKilled();
+
             // -- stop movement 
             dying = true;
 
             // -- hide sprite 
+            animator.enabled = false; // -- prevents idle animation from overriding sprite renderer  
             this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
             this.mark.SetActive(false);
 
@@ -85,8 +109,6 @@ public abstract class Enemy : MonoBehaviour
             var main = explosionEffect.main;
             yield return new WaitForSeconds(main.duration);
 
-
-            GameManager.instance.AddEnemyKilled();
             Destroy(gameObject);
         }
     }
@@ -97,15 +119,17 @@ public abstract class Enemy : MonoBehaviour
         marked = true;
     }
 
-    protected void StraightLeftMovement()
+
+    protected void LeftAndJump()
     {
-        transform.Translate(-Vector3.right * moveSpeedX * Time.deltaTime);
+        animator.SetBool("isJumping", true);
+
     }
 
-    protected void SineMovement()
+    protected void Crawl()
     {
-        pos -= transform.right * Time.deltaTime * moveSpeedX;
-        transform.position = pos + transform.up * Mathf.Sin(Time.time * frequency) * height; 
+        animator.SetBool("isCrawling", true);
     }
+
 
 }

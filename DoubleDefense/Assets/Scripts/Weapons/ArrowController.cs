@@ -5,6 +5,8 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour
 {
 
+    public float pullbackLength = .2f; 
+
     private int damage; 
 
     void Start()
@@ -51,6 +53,12 @@ public class ArrowController : MonoBehaviour
 
     public void LoadAnimation()
     {
-        this.transform.position = this.transform.position + new Vector3(-.2f, 0, 0); 
+        this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0); 
+    }
+
+    public void PutBackAnimation()
+    {
+        this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
+
     }
 }

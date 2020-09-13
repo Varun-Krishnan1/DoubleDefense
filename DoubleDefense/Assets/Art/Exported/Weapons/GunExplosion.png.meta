@@ -1,0 +1,361 @@
+fileFormatVersion: 2
+guid: efdb2d18bbcb32c4b8b342cccb73a3c7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9099906056642593050
+    second: GunExplosion_0
+  - first:
+      213: -1345948243554894881
+    second: GunExplosion_1
+  - first:
+      213: 3646039124928314124
+    second: GunExplosion_2
+  - first:
+      213: 5770163062028338071
+    second: GunExplosion_3
+  - first:
+      213: 5052189233897814806
+    second: GunExplosion_4
+  - first:
+      213: 966916868659801294
+    second: GunExplosion_5
+  - first:
+      213: 8632029775331083436
+    second: GunExplosion_6
+  - first:
+      213: -5321617455647936021
+    second: GunExplosion_7
+  - first:
+      213: -2443801782569133718
+    second: GunExplosion_8
+  - first:
+      213: 920839462791302040
+    second: GunExplosion_9
+  - first:
+      213: 5525915348889623391
+    second: GunExplosion_10
+  - first:
+      213: 6780529752137930313
+    second: GunExplosion_11
+  - first:
+      213: 3705724983107760914
+    second: GunExplosion_12
+  - first:
+      213: 1380967899165017703
+    second: GunExplosion_13
+  - first:
+      213: -1135511616602809525
+    second: GunExplosion_14
+  - first:
+      213: -1752408260351041782
+    second: GunExplosion_15
+  - first:
+      213: 927074688708124708
+    second: GunExplosion_16
+  - first:
+      213: 3796638939256459396
+    second: GunExplosion_17
+  - first:
+      213: 8311529540486030073
+    second: GunExplosion_18
+  - first:
+      213: -5294815186137924283
+    second: GunExplosion_19
+  - first:
+      213: -1236076973547036459
+    second: GunExplosion_20
+  - first:
+      213: 7174684000278592368
+    second: GunExplosion_21
+  - first:
+      213: -378734742470507755
+    second: GunExplosion_22
+  - first:
+      213: -8708785753735384422
+    second: GunExplosion_23
+  - first:
+      213: 125229338832081416
+    second: GunExplosion_24
+  - first:
+      213: -6315857333142910031
+    second: GunExplosion_25
+  - first:
+      213: -7483913634808755294
+    second: GunExplosion_26
+  - first:
+      213: 1944745656070129602
+    second: GunExplosion_27
+  - first:
+      213: 5079294047504052362
+    second: GunExplosion_28
+  - first:
+      213: 9158167845432742487
+    second: GunExplosion_29
+  - first:
+      213: -1427124746829347240
+    second: GunExplosion_30
+  - first:
+      213: 1989071856439356539
+    second: GunExplosion_31
+  - first:
+      213: 7801354308129944972
+    second: GunExplosion_5
+  - first:
+      213: 744878758760203491
+    second: GunExplosion_0
+  - first:
+      213: -5350022838264354534
+    second: GunExplosion_1
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GunExplosion_0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 708
+        width: 183
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e4c2a8d847565a00800000000000000
+      internalID: 744878758760203491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunExplosion_1
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 708
+        width: 183
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a19a6010396e0c5b0800000000000000
+      internalID: -5350022838264354534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunExplosion_2
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 708
+        width: 183
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b378e3445599230800000000000000
+      internalID: 3646039124928314124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunExplosion_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 708
+        width: 183
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7938748bbbcb31050800000000000000
+      internalID: 5770163062028338071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunExplosion_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 195
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b3880375bfc1640800000000000000
+      internalID: 5052189233897814806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunExplosion_5
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 392
+        width: 172
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccecc3e4cd2b6d00800000000000000
+      internalID: 966916868659801294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
