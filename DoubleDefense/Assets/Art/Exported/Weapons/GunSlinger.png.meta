@@ -1,0 +1,334 @@
+fileFormatVersion: 2
+guid: 1d19b117be6ae3e49a41d36becea9748
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6792815948972800468
+    second: GunSlinger_0
+  - first:
+      213: 8219961734341399815
+    second: GunSlinger_1
+  - first:
+      213: -6414739926070997581
+    second: GunSlinger_2
+  - first:
+      213: 5872321216599935557
+    second: GunSlinger_3
+  - first:
+      213: 5026101551736490267
+    second: GunSlinger_4
+  - first:
+      213: -454843518250194495
+    second: GunSlinger_5
+  - first:
+      213: 7068231311617355758
+    second: GunSlinger_6
+  - first:
+      213: 9220092408346256929
+    second: GunSlinger_7
+  - first:
+      213: -7979376781590296814
+    second: GunSlinger_8
+  - first:
+      213: -6701841344751182435
+    second: GunSlinger_9
+  - first:
+      213: -7595025343796292493
+    second: GunSlinger_10
+  - first:
+      213: 121619429001219273
+    second: GunSlinger_11
+  - first:
+      213: -3940701765766606189
+    second: GunSlinger_12
+  - first:
+      213: -7854948479784016163
+    second: GunSlinger_13
+  - first:
+      213: -2171690907076237107
+    second: GunSlinger_14
+  - first:
+      213: 1806044104072709305
+    second: GunSlinger_15
+  - first:
+      213: -5276068364195732352
+    second: GunSlinger_16
+  - first:
+      213: 6583538025005521891
+    second: GunSlinger_17
+  - first:
+      213: 2619648915931525075
+    second: GunSlinger_18
+  - first:
+      213: -694673055763851630
+    second: GunSlinger_19
+  - first:
+      213: -4782696428328993727
+    second: GunSlinger_20
+  - first:
+      213: 7708167136138969392
+    second: GunSlinger_21
+  - first:
+      213: 615286151281585192
+    second: GunSlinger_22
+  - first:
+      213: -6328005967951706318
+    second: GunSlinger_23
+  - first:
+      213: -3212806293824638860
+    second: GunSlinger_24
+  - first:
+      213: -4796099512426660588
+    second: GunSlinger_25
+  - first:
+      213: -3334516135757199339
+    second: GunSlinger_26
+  - first:
+      213: 5931500620444545510
+    second: GunSlinger_27
+  - first:
+      213: 8974452218764199326
+    second: GunSlinger_28
+  - first:
+      213: 2185317217673102115
+    second: GunSlinger_29
+  - first:
+      213: -4121642687220487740
+    second: GunSlinger_30
+  - first:
+      213: -306014295834313305
+    second: GunSlinger_31
+  - first:
+      213: 5677473113993318122
+    second: GunSlinger_32
+  - first:
+      213: -3153584771935278885
+    second: GunSlinger_33
+  - first:
+      213: 1406591209962898110
+    second: GunSlinger_34
+  - first:
+      213: 2573644185243530115
+    second: GunSlinger_35
+  - first:
+      213: 8800023633301571157
+    second: GunSlinger_36
+  - first:
+      213: -8807965573506078502
+    second: GunSlinger_37
+  - first:
+      213: -8966056866996654601
+    second: GunSlinger_38
+  - first:
+      213: 1519565598023038952
+    second: GunSlinger_39
+  - first:
+      213: 7778211269048500650
+    second: GunSlinger_40
+  - first:
+      213: 2187593478930056393
+    second: GunSlinger_41
+  - first:
+      213: 6924795428682992316
+    second: GunSlinger_42
+  - first:
+      213: 8087443998516020251
+    second: GunSlinger_43
+  - first:
+      213: -8689208849498512889
+    second: GunSlinger_0
+  - first:
+      213: -4614099855040037415
+    second: GunSlinger_1
+  - first:
+      213: -962411663255260630
+    second: GunSlinger_2
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GunSlinger_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 629
+        width: 402
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702e57ab69ab96780800000000000000
+      internalID: -8689208849498512889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunSlinger_1
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 629
+        width: 402
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd382ed0ac67ffb0800000000000000
+      internalID: -4614099855040037415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GunSlinger_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 232
+        width: 402
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a223afbf0b3d4a2f0800000000000000
+      internalID: -962411663255260630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
