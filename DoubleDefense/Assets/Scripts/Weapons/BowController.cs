@@ -28,18 +28,29 @@ public class BowController : Weapon
 
     // -- arrow 
     private GameObject currentArrow;
+    private ArrowController curArrowController; 
     private LineRenderer lr;
-    private Rigidbody2D arrowRB; 
+    private Rigidbody2D arrowRB;
 
 
     void Start()
     {
-        AddNewArrow(); 
+        AddNewArrow();
     }
 
     void Update()
     {
-        animator.SetBool("isReleasing", false); // -- reset animation variable after releasing 
+        // -- allows for animation cancelling when load animation accidentely triggered on first frame 
+        // -- before crosshair is touched 
+        if (gun.isMovingCrosshair)
+        {
+            animator.SetBool("isLoading", false);
+
+            if(curArrowController.getLoaded())
+            {
+                curArrowController.PutBackAnimation(); 
+            }
+        }
 
         // -- reloading 
         curReloadTime -= Time.deltaTime; 
@@ -64,8 +75,9 @@ public class BowController : Weapon
                     DragStart();
 
                     // -- animation 
-                    currentArrow.GetComponent<ArrowController>().LoadAnimation();
-                    animator.SetBool("isLoading", true); 
+                    curArrowController.LoadAnimation();
+                    animator.SetBool("isReleasing", false);
+                    animator.SetBool("isLoading", true);
                 }
 
                 if (touch.phase == TouchPhase.Moved)
@@ -87,6 +99,11 @@ public class BowController : Weapon
 
     }
 
+    void MaxPullback()
+    {
+        // Handheld.Vibrate(); 
+    }
+
     void AddNewArrow()
     {
         // -- create arrow at correct location 
@@ -98,6 +115,11 @@ public class BowController : Weapon
         // -- get the line renderer and rigidobdy of the arrow 
         lr = currentArrow.GetComponent<LineRenderer>();
         arrowRB = currentArrow.GetComponent<Rigidbody2D>();
+
+        // -- get arrow controller 
+        curArrowController = currentArrow.GetComponent<ArrowController>();
+
+
     }
 
 
@@ -117,12 +139,20 @@ public class BowController : Weapon
 
         // -- rotation 
         float angle = Mathf.Atan2(dragStartPos.y - draggingPos.y, dragStartPos.x - draggingPos.x) * Mathf.Rad2Deg; 
-        currentArrow.transform.rotation = Quaternion.Euler(0, 0, angle); 
+        currentArrow.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // -- line renderer 
         lr.positionCount = 2;
-        lr.SetPosition(1, draggingPos); 
+        lr.SetPosition(1, draggingPos);
+
+        // -- function for when they pulled it back to max length 
+        Vector3 force = dragStartPos - draggingPos;
+        if(force.magnitude >= maxDrag)
+        { 
+            MaxPullback(); 
+        }
     }
+
 
     void DragRelease()
     {
@@ -137,7 +167,7 @@ public class BowController : Weapon
         if((Vector2)force != Vector2.zero)
         {
             // -- start arrow shooting animation 
-            currentArrow.GetComponent<ArrowController>().ReleaseAnimation(); 
+            curArrowController.ReleaseAnimation(); 
 
             // -- must change to dynamic for force to be added 
             arrowRB.isKinematic = false;
@@ -154,7 +184,7 @@ public class BowController : Weapon
         else
         {
             // -- put arrow back to it's pre loading spot 
-            currentArrow.GetComponent<ArrowController>().PutBackAnimation();
+            curArrowController.PutBackAnimation();
         }
 
 

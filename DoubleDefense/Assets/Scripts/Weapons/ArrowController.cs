@@ -5,13 +5,14 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour
 {
 
-    public float pullbackLength = .2f; 
+    public float pullbackLength = .2f;
 
-    private int damage; 
+
+    private int damage;
+    private bool isLoaded = false; 
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -19,6 +20,10 @@ public class ArrowController : MonoBehaviour
         
     }
 
+    public bool getLoaded()
+    {
+        return isLoaded; 
+    }
     public void SetDamage(int damage)
     {
         this.damage = damage; 
@@ -53,12 +58,14 @@ public class ArrowController : MonoBehaviour
 
     public void LoadAnimation()
     {
-        this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0); 
+        this.transform.position = this.transform.position + new Vector3(-pullbackLength, 0, 0);
+        isLoaded = true; 
     }
 
     public void PutBackAnimation()
     {
+        print("HERE"); 
         this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
-
+        isLoaded = false; 
     }
 }

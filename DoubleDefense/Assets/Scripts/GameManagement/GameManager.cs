@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int totalEnemiesAllowed; 
 
 
-    private int waveNumber;
+    private int waveNumber = 0;
     private int enemiesKilled;
     private int enemiesAllowed;
     private bool UIset = false; 
@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        NewWave(); 
     }
 
     public void AddEnemyAllowed()
@@ -53,6 +58,21 @@ public class GameManager : MonoBehaviour
         UIManager.instance.SetEnemyKilled(enemiesKilled);
     }
 
+
+    public void NewWave()
+    {
+        waveNumber += 1;
+
+        StartCoroutine(UIManager.instance.NewWaveUI(waveNumber));  
+    }
+
+    // -- CALLED BY UIMANAGER AFTER NEW WAVE UI IS DONE SHOWING 
+    public void NewWaveContinue()
+    {
+        // -- spawner setup 
+        MapSetup.instance.SetupNewWave(); 
+    }
+
     private void EndGame()
     {
         print("GAME OVER"); 
@@ -60,10 +80,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // -- have to do this in first frame of update so UIManager is loaded into game 
         if(!UIset)
         {
             UIManager.instance.SetWaveUI(totalEnemiesAllowed);
             UIset = true; 
         }
     }
+
 }

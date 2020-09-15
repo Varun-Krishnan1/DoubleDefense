@@ -8,21 +8,32 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public GameObject enemy; 
 
-    private float spawnRateTime; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float spawnRateTime;
+    private bool isSpawning; 
 
     // Update is called once per frame
     void Update()
     {
         spawnRateTime -= Time.deltaTime; 
-        if(spawnRateTime <= 0)
+
+        if(isSpawning)
         {
-            Instantiate(enemy, this.transform.position, this.transform.rotation);
-            spawnRateTime = spawnRate; 
+            if (spawnRateTime <= 0)
+            {
+                Instantiate(enemy, this.transform.position, this.transform.rotation);
+                spawnRateTime = spawnRate;
+            }
         }
+
+    }
+
+    public void StartSpawning()
+    {
+        this.isSpawning = true; 
+    }
+
+    public void StopSpawning()
+    {
+        this.isSpawning = false; 
     }
 }
