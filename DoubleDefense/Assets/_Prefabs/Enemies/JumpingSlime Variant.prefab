@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493942357353851505, guid: 83d3759723b15f14e9a771bdb6795412, type: 3}
       propertyPath: m_Name
-      value: JumpingSlime
+      value: JumpingSlime Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d3759723b15f14e9a771bdb6795412, type: 3}

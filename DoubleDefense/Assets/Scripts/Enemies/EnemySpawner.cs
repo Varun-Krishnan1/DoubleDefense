@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy; 
 
     private float spawnRateTime;
-    private bool isSpawning; 
+    private bool isSpawning = true; 
 
     // Update is called once per frame
     void Update()
