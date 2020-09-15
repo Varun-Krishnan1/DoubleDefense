@@ -78,7 +78,7 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            StartCoroutine(Die());
+            StartCoroutine(Die(endOfWaveKill: false));
         }
     }
 
@@ -87,12 +87,20 @@ public abstract class Enemy : MonoBehaviour
         return this.marked;
     }
 
-    protected IEnumerator Die()
+    protected IEnumerator Die(bool endOfWaveKill)
     {
         // -- this condition prevents explosion effect from occuring multiple times 
         if (!dying)
         {
-            GameManager.instance.AddEnemyKilled();
+
+            if(!endOfWaveKill)
+            {
+                GameManager.instance.AddEnemyKilled();
+            }
+            else
+            {
+                GameManager.instance.AddEndOfWaveKill();
+            }
 
             // -- stop movement 
             dying = true;
@@ -109,9 +117,11 @@ public abstract class Enemy : MonoBehaviour
             var main = explosionEffect.main;
             yield return new WaitForSeconds(main.duration);
 
-            Destroy(gameObject);
+            // -- destroy parent container thereby destroying itself 
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
+
 
     public void ShowMark()
     {
@@ -131,5 +141,8 @@ public abstract class Enemy : MonoBehaviour
         animator.SetBool("isCrawling", true);
     }
 
-
+    public void EndOfWaveKill()
+    {
+        StartCoroutine(Die(endOfWaveKill: true)); 
+    }
 }

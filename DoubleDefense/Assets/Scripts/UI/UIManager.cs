@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI totalEnemiesText;
     public TextMeshProUGUI enemiesAllowedText;
     public TextMeshProUGUI enemiesKilledText;
+    public TextMeshProUGUI enemiesGoalText;
+
 
     [Header("UI Customizations")]
     public float newWaveShowTime;
@@ -35,13 +37,12 @@ public class UIManager : MonoBehaviour
 
     }
     
-    public void SetWaveUI(float totalEnemiesAllowed)
-    {
-        totalEnemiesText.SetText(totalEnemiesAllowed.ToString());
-    }
 
-    public IEnumerator NewWaveUI(int waveNumber)
+
+    public IEnumerator NewWaveUI(int waveNumber, int waveGoal, int maxEnemiesAllowed)
     {
+
+            /* Start of wave number coming down animation */
         waveNumberText.gameObject.SetActive(true);
         waveNumberText.SetText("Wave " + waveNumber.ToString());
 
@@ -56,6 +57,13 @@ public class UIManager : MonoBehaviour
 
         waveNumberText.gameObject.SetActive(false);
 
+        /* End of wave number coming down animation */
+
+        // -- redraw UI for current wave 
+        SetMaxEnemiesAllowed(maxEnemiesAllowed);
+        SetEnemyGoal(waveGoal);
+        SetEnemyKilled(0);
+        SetEnemyAllowed(0);
 
         GameManager.instance.NewWaveContinue(); 
 
@@ -67,9 +75,19 @@ public class UIManager : MonoBehaviour
         enemiesAllowedText.SetText(enemiesAllowed.ToString());
     }
 
+    public void SetMaxEnemiesAllowed(float totalEnemiesAllowed)
+    {
+        totalEnemiesText.SetText(totalEnemiesAllowed.ToString());
+    }
+
     public void SetEnemyKilled(float enemiesKilled)
     {
         enemiesKilledText.SetText(enemiesKilled.ToString()); 
+    }
+
+    public void SetEnemyGoal(float enemyGoal)
+    {
+        enemiesGoalText.SetText("Goal: " + enemyGoal.ToString()); 
     }
 
 

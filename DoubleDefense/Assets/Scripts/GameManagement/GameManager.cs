@@ -11,15 +11,21 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [Header("Game Statistics")]
-    public int totalEnemiesAllowed; 
+    public int maxEnemiesAllowed; 
 
 
     private int waveNumber = 0;
     private int enemiesKilled;
-    private int enemiesAllowed;
-    private bool UIset = false; 
+    private int totalEnemiesKilled; 
+    private int enemiesEndOfWaveKilled; 
 
-    // Start is called before the first frame update
+    private int enemiesAllowed;
+    private int totalEnemiesAllowed; 
+
+    private int waveGoal; 
+
+    // ---- START METHODS ----
+
     void Awake()
     {
         if (instance == null)
@@ -39,13 +45,45 @@ public class GameManager : MonoBehaviour
         NewWave(); 
     }
 
+    // ---- MAIN GAME LOOP METHODS ----
+    public void NewWave()
+    {
+        // -- keep track of total statistics for end of game 
+        totalEnemiesKilled += enemiesKilled;
+        totalEnemiesAllowed += enemiesAllowed;
+
+        // -- reset other variables  
+        enemiesKilled = 0;
+        enemiesAllowed = 0;
+
+        waveNumber += 1;
+        waveGoal += 5;
+
+        StartCoroutine(UIManager.instance.NewWaveUI(waveNumber, waveGoal, maxEnemiesAllowed));
+    }
+
+    // -- CALLED BY UIMANAGER AFTER NEW WAVE UI IS DONE SHOWING 
+    public void NewWaveContinue()
+    {
+        // -- spawner setup 
+        MapSetup.instance.SetupNewWave(waveNumber);
+    }
+
+    private void EndGame()
+    {
+        print("GAME OVER");
+    }
+
+
+    // ---- HELPER METHODS ----
+
     public void AddEnemyAllowed()
     {
         enemiesAllowed += 1;
 
         UIManager.instance.SetEnemyAllowed(enemiesAllowed);
 
-        if (enemiesAllowed == totalEnemiesAllowed)
+        if (enemiesAllowed == maxEnemiesAllowed)
         {
             EndGame(); 
         }
@@ -56,36 +94,22 @@ public class GameManager : MonoBehaviour
         enemiesKilled += 1;
 
         UIManager.instance.SetEnemyKilled(enemiesKilled);
-    }
 
-
-    public void NewWave()
-    {
-        waveNumber += 1;
-
-        StartCoroutine(UIManager.instance.NewWaveUI(waveNumber));  
-    }
-
-    // -- CALLED BY UIMANAGER AFTER NEW WAVE UI IS DONE SHOWING 
-    public void NewWaveContinue()
-    {
-        // -- spawner setup 
-        MapSetup.instance.SetupNewWave(); 
-    }
-
-    private void EndGame()
-    {
-        print("GAME OVER"); 
-    }
-
-    void Update()
-    {
-        // -- have to do this in first frame of update so UIManager is loaded into game 
-        if(!UIset)
+        if(enemiesKilled == waveGoal)
         {
-            UIManager.instance.SetWaveUI(totalEnemiesAllowed);
-            UIset = true; 
+            MapSetup.instance.DestroyWave();
+            NewWave(); 
         }
     }
+
+    public void AddEndOfWaveKill()
+    {
+        enemiesEndOfWaveKilled += 1; 
+    }
+
+
+
+
+
 
 }

@@ -55,17 +55,24 @@ public class MapSetup : MonoBehaviour
         minY = spawnBounds.bounds.center.y - spawnBounds.bounds.extents.y;
     }
 
-    public void SetupNewWave()
+    public void SetupNewWave(int totalSpawners)
     {
         waveStarted = true; 
 
         // -- store spawn bounds in global variable 
         SetupSpawnBounds();
 
+        int spawnersCreated = 0; 
         // -- create one of each allowable spawner types to start wave 
         for(int i = 0; i < spawnerTypes.Count; i++)
         {
-            InstantiateSpawner(i); 
+            InstantiateSpawner(i);
+            spawnersCreated += 1; 
+        }
+
+        for(int i = spawnersCreated; i < totalSpawners; i++)
+        {
+            InstantiateRandomSpawner(); 
         }
     }
 
@@ -109,8 +116,25 @@ public class MapSetup : MonoBehaviour
         }
     }
 
-    void StopWave()
+    public void DestroyWave()
     {
-        this.waveStarted = false; 
+        this.waveStarted = false;
+
+        // -- destroy all spawners 
+        foreach(GameObject spawner in spawners)
+        {
+            Destroy(spawner); 
+        }
+
+        spawners.Clear();  // -- delete objects from list
+
+        // -- destroy all enemies 
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().EndOfWaveKill(); 
+        }
+
     }
 }

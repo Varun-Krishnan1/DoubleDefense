@@ -68,4 +68,9 @@ public class ArrowController : MonoBehaviour
         this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
         isLoaded = false; 
     }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
