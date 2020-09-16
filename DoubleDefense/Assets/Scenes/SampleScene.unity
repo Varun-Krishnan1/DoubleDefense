@@ -994,6 +994,7 @@ MonoBehaviour:
   spawnerTypes:
   - {fileID: 2049886763464815113, guid: b595b4bb589a8174c9205fe1751c5e74, type: 3}
   - {fileID: 2808664338516584392, guid: 1f098d523bf8f8c46908570c14c2a039, type: 3}
+  - {fileID: 3799759419791134480, guid: bc3ff5c16fb97874e9b719e6eed125d3, type: 3}
   spawnBounds: {fileID: 1221445701}
   spawnerRefresherRateTime: 2
 --- !u!1 &617032841

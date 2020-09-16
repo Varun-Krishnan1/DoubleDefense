@@ -4,11 +4,8 @@ using System.Net.NetworkInformation;
 using UnityEngine;
 
 // -- BASE CLASS ALL ENEMIES INHERIT FROM 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : CrosshairObject
 {
-
-    [Header("Health")]
-    public int health;
 
     [Header("Left And Jump")]
     public bool leftAndJump;
@@ -23,12 +20,10 @@ public abstract class Enemy : MonoBehaviour
     [Header("Other")]
     public Animator animator;
     public GameObject slimeParent; 
-    public GameObject mark;
     public ParticleSystem explosionEffect;
 
     // -- private booleans 
     protected bool dying; 
-    protected bool marked;
 
     // -- private floats 
     protected float jumpDelay;
@@ -73,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -82,13 +77,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public bool isMarked()
-    {
-        return this.marked;
-    }
-
     protected IEnumerator Die(bool endOfWaveKill)
     {
+
         // -- this condition prevents explosion effect from occuring multiple times 
         if (!dying)
         {
@@ -101,6 +92,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 GameManager.instance.AddEndOfWaveKill();
             }
+            TypeSpecificDeath();
 
             // -- stop movement 
             dying = true;
@@ -122,12 +114,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-
-    public void ShowMark()
-    {
-        mark.SetActive(true);
-        marked = true;
-    }
+    protected abstract void TypeSpecificDeath(); 
 
 
     protected void LeftAndJump()

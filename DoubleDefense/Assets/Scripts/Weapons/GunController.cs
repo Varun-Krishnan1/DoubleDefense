@@ -97,66 +97,69 @@ public class GunController : Weapon
 
     void DragRelease()
     {
-        // -- array of enemies that is in overlap circle of crosshair 
-        List<Enemy> enemies = new List<Enemy>(); 
-
+        // -- array of colliders that is in overlap circle of crosshair 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(crosshair.transform.position, crosshair_radius);
+
+        // -- determine what to do to overlapped colliders 
+        CrosshairReleaseAction(colliders); 
+
+    }
+
+    void CrosshairReleaseAction(Collider2D[] colliders)
+    {
+        // -- array of enemies that is in overlap circle of crosshair 
+        //List<Enemy> enemies = new List<Enemy>();
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            print(colliders[i].gameObject); 
-            if (colliders[i].gameObject != this.gameObject)
+            CrosshairObject crossObject = colliders[i].gameObject.GetComponent<CrosshairObject>();
+
+            // -- if it is a crosshair object 
+            if (crossObject)
             {
-                Enemy checkIfEnemy = colliders[i].gameObject.GetComponent<Enemy>(); 
-                if(checkIfEnemy)
+                // -- if it is targetable and it's not already marked and you have enough shots left 
+                if (crossObject.isTargetable() && !crossObject.isMarked() && shotsLeft > 0)
                 {
-                    enemies.Add(checkIfEnemy); 
+                    StartCoroutine(ShootAfterDelay(crossObject));
+                    shotsLeft -= 1;
+                    bulletCounter.SetBulletNumber(shotsLeft);
                 }
+
+                // -- only do first thing it overlaps 
+                break;
             }
+
         }
 
-        // -- if they release on enemy then mark the enemy 
-        for(int i = 0; i < enemies.Count; i++)
+        // -- if shots are now zero then start timer
+        if (shotsLeft == 0)
         {
-            Enemy enemy = enemies[i]; 
-            if(!enemy.isMarked() && shotsLeft > 0)
-            {
-                StartCoroutine(ShootAfterDelay(enemy.gameObject));
-                shotsLeft -= 1;
-                bulletCounter.SetBulletNumber(shotsLeft);
-
-
-                // -- if shots are now zero then start timer
-                if (shotsLeft == 0)
-                {
-                    timer.StartTimer(reloadTime);
-                }
-            }
+            timer.StartTimer(reloadTime);
         }
-
 
         // -- move it back to start position 
-
-        crosshair.transform.position = crosshairStartPos; 
-
+        crosshair.transform.position = crosshairStartPos;
     }
 
-
-
-    private IEnumerator ShootAfterDelay(GameObject enemy)
+    // -- adds mark then waits a delay time then shoots 
+    private IEnumerator ShootAfterDelay(CrosshairObject crossObject)
     {
-        enemy.GetComponent<Enemy>().ShowMark(); 
+        crossObject.ShowMark(); 
         yield return new WaitForSeconds(timeTillShot);
-        ShootEnemy(enemy); 
+        ShootObject(crossObject); 
     }
 
-    private void ShootEnemy(GameObject enemy)
+    // -- actual shooting in this function 
+    private void ShootObject(CrosshairObject crossObject)
     {
+        // -- gun animations 
         animator.SetBool("isShooting", true);
         explosionAnimator.SetBool("isShooting", true); 
-        if(enemy)
+
+        // -- if still there 
+        if(crossObject)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            crossObject.TakeDamage(damage);
         }
     }
 

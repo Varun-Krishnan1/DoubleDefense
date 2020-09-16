@@ -9,7 +9,8 @@ public class ArrowController : MonoBehaviour
 
 
     private int damage;
-    private bool isLoaded = false; 
+    private bool isLoaded = false;
+    private bool canDoDamage = false; 
 
     void Start()
     {
@@ -32,28 +33,30 @@ public class ArrowController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Enemy enemy = col.GetComponent<Enemy>(); 
-        if(enemy)
+
+        // -- if it attacks an enemy and it can do damage 
+        if(enemy && canDoDamage)
         {
             enemy.TakeDamage(damage); 
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if(collision.gameObject.tag == "Wall")
+        BreakableShield shield = col.gameObject.GetComponent<BreakableShield>(); 
+        if(shield)
         {
-            DestroyArrow(); 
+            // -- don't let it do damage as it's falling from a shield 
+            canDoDamage = false; 
         }
-    }
-
-    void DestroyArrow()
-    {
-        Destroy(gameObject); 
     }
     
     public void ReleaseAnimation()
     {
-        this.GetComponent<Animator>().SetBool("isShot", true); 
+        this.GetComponent<Animator>().SetBool("isShot", true);
+
+        // -- now let it do damage 
+        canDoDamage = true; 
     }
 
     public void LoadAnimation()
@@ -64,7 +67,6 @@ public class ArrowController : MonoBehaviour
 
     public void PutBackAnimation()
     {
-        print("HERE"); 
         this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
         isLoaded = false; 
     }

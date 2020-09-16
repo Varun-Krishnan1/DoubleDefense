@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyBasic : Enemy
 {
+    protected override void TypeSpecificDeath()
+    {
 
+    }
 
 }
