@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO; 
 
 using Random = UnityEngine.Random;
 
@@ -29,6 +31,12 @@ public class MapSetup : MonoBehaviour
     // -- for bounds 
     private float minX, maxX, minY, maxY;
 
+    // -- for wave if should be randomized or not 
+    private bool randomizeWave;
+    private float timeBetweenSubWaves;
+    private int totalSpawners;
+    private int maxSpawnerTypeAllowed; 
+
     void Awake()
     {
         if (instance == null)
@@ -55,25 +63,87 @@ public class MapSetup : MonoBehaviour
         minY = spawnBounds.bounds.center.y - spawnBounds.bounds.extents.y;
     }
 
-    public void SetupNewWave(int totalSpawners)
+    public void SetupNewWave(int totalSpawners, int maxSpawnerTypeAllowed, float timeBetweenSubWaves)
     {
-        waveStarted = true; 
+        waveStarted = true;
+
+        // -- set time between sub-waves 
+        this.timeBetweenSubWaves = timeBetweenSubWaves;
+        this.totalSpawners = totalSpawners;
+        this.maxSpawnerTypeAllowed = maxSpawnerTypeAllowed; 
 
         // -- store spawn bounds in global variable 
         SetupSpawnBounds();
 
-        int spawnersCreated = 0; 
-        // -- create one of each allowable spawner types to start wave 
-        for(int i = 0; i < spawnerTypes.Count; i++)
+        // -- configuration of new wave 
+        // RandomStartConfiguration(totalSpawners, maxSpawnerTypeAllowed);
+
+        // -- configuration of specific type 
+        string filename = Application.persistentDataPath + "/VerticalShield.dat"; 
+        LoadConfigurationFromFile(filename); 
+    }
+
+    void LoadConfigurationFromFile(string filename)
+    {
+        ConfigSaveLoad.ConfigurationObject loadedConfObject = ConfigSaveLoad.instance.LoadConfigFile(filename);
+
+        foreach (ConfigSaveLoad.SpawnerSaveObject so in loadedConfObject.spawners)
         {
-            InstantiateSpawner(i);
-            spawnersCreated += 1; 
+            GameObject spawner;
+
+            int spawnerArrayPos = 0; // -- default is crawling 
+            
+            Vector3 spawnPosition = new Vector3(so.position[0], so.position[1], 0); 
+            if (so.enemyType == "shield")
+            {
+                spawnerArrayPos = 2; 
+            }
+            else if (so.enemyType == "leftAndJump")
+            {
+                spawnerArrayPos = 1; 
+            }
+
+            spawner = Instantiate(spawnerTypes[spawnerArrayPos], spawnPosition, Quaternion.identity);
+
+            // -- set spawn rate based on configuration 
+            spawner.GetComponent<EnemySpawner>().spawnRate = so.spawnRate;
+
+            // -- add spawner to spawners array 
+            spawners.Add(spawner); 
         }
 
-        for(int i = spawnersCreated; i < totalSpawners; i++)
+        // -- stop wave after seconds stored in configuration object 
+        StartCoroutine(StopConfigurationWave(loadedConfObject.spawnLength)); 
+    }
+
+    private IEnumerator StopConfigurationWave(float numSeconds)
+    {
+        yield return new WaitForSeconds(numSeconds);
+
+        DestroySpawners();
+
+        // -- wait time between sub-waves before next wave 
+        yield return new WaitForSeconds(timeBetweenSubWaves);
+
+        RandomStartConfiguration(); 
+    }
+
+    void RandomStartConfiguration()
+    {
+        int spawnersCreated = 0;
+        // -- create one of each allowable spawner types to start wave 
+        for (int i = 0; i <= maxSpawnerTypeAllowed; i++)
         {
-            InstantiateRandomSpawner(); 
+            InstantiateSpawner(i);
+            spawnersCreated += 1;
         }
+
+        for (int i = spawnersCreated; i < totalSpawners; i++)
+        {
+            InstantiateRandomSpawner();
+        }
+
+        this.randomizeWave = true; 
     }
 
     void InstantiateRandomSpawner()
@@ -107,12 +177,15 @@ public class MapSetup : MonoBehaviour
 
     void Update()
     {
-        // -- continously change location of spawners
-        spawnerRefresherRate -= Time.deltaTime; 
-        if(spawnerRefresherRate <= 0 && waveStarted)
+        if(randomizeWave)
         {
-            MoveRandomSpawner();
-            spawnerRefresherRate = spawnerRefresherRateTime; 
+            // -- continously change location of spawners
+            spawnerRefresherRate -= Time.deltaTime;
+            if (spawnerRefresherRate <= 0 && waveStarted)
+            {
+                MoveRandomSpawner();
+                spawnerRefresherRate = spawnerRefresherRateTime;
+            }
         }
     }
 
@@ -120,13 +193,7 @@ public class MapSetup : MonoBehaviour
     {
         this.waveStarted = false;
 
-        // -- destroy all spawners 
-        foreach(GameObject spawner in spawners)
-        {
-            Destroy(spawner); 
-        }
-
-        spawners.Clear();  // -- delete objects from list
+        DestroySpawners(); 
 
         // -- destroy all enemies 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -136,5 +203,16 @@ public class MapSetup : MonoBehaviour
             enemy.GetComponent<Enemy>().EndOfWaveKill(); 
         }
 
+    }
+
+    void DestroySpawners()
+    {
+        // -- destroy all spawners 
+        foreach (GameObject spawner in spawners)
+        {
+            Destroy(spawner);
+        }
+
+        spawners.Clear();  // -- delete objects from list
     }
 }

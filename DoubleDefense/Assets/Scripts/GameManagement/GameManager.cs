@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [Header("Game Statistics")]
-    public int maxEnemiesAllowed; 
+    public int maxEnemiesAllowed;
+    public float timeBetweenSubWaves; 
 
 
     private int waveNumber = 0;
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void NewWaveContinue()
     {
         // -- spawner setup 
-        MapSetup.instance.SetupNewWave(waveNumber);
+        MapSetup.instance.SetupNewWave(waveNumber, 2, timeBetweenSubWaves);
     }
 
     private void EndGame()

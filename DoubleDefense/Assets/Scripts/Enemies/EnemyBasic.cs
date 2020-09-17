@@ -9,4 +9,15 @@ public class EnemyBasic : Enemy
 
     }
 
+    public override string GetEnemyType()
+    {
+        if(this.leftAndJump)
+        {
+            return "leftAndJump"; 
+        }
+        else
+        {
+            return "crawling"; 
+        }
+    }
 }

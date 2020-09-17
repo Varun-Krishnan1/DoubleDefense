@@ -110,6 +110,8 @@ public class GunController : Weapon
         // -- array of enemies that is in overlap circle of crosshair 
         //List<Enemy> enemies = new List<Enemy>();
 
+        CrosshairObject firstObjectFound = null; 
+
         for (int i = 0; i < colliders.Length; i++)
         {
             CrosshairObject crossObject = colliders[i].gameObject.GetComponent<CrosshairObject>();
@@ -117,18 +119,28 @@ public class GunController : Weapon
             // -- if it is a crosshair object 
             if (crossObject)
             {
-                // -- if it is targetable and it's not already marked and you have enough shots left 
-                if (crossObject.isTargetable() && !crossObject.isMarked() && shotsLeft > 0)
+                BreakableShield shield = crossObject.GetComponent<BreakableShield>(); 
+                if(shield)
                 {
-                    StartCoroutine(ShootAfterDelay(crossObject));
-                    shotsLeft -= 1;
-                    bulletCounter.SetBulletNumber(shotsLeft);
+                    // -- override first object with shield then break loop 
+                    firstObjectFound = shield;
+                    break; 
                 }
-
-                // -- only do first thing it overlaps 
-                break;
             }
 
+            // -- if you haven't got a first object set it to this one 
+            if(!firstObjectFound)
+            {
+                firstObjectFound = crossObject; 
+            }
+        }
+
+        // -- if it is targetable and it's not already marked and you have enough shots left 
+        if (firstObjectFound.isTargetable() && !firstObjectFound.isMarked() && shotsLeft > 0)
+        {
+            StartCoroutine(ShootAfterDelay(firstObjectFound));
+            shotsLeft -= 1;
+            bulletCounter.SetBulletNumber(shotsLeft);
         }
 
         // -- if shots are now zero then start timer

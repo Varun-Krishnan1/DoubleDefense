@@ -17,4 +17,8 @@ public class EnemyShield : Enemy
         }
     }
 
+    public override string GetEnemyType()
+    {
+        return "shield"; 
+    }
 }

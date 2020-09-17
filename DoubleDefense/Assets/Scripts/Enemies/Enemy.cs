@@ -132,4 +132,6 @@ public abstract class Enemy : CrosshairObject
     {
         StartCoroutine(Die(endOfWaveKill: true)); 
     }
+
+    public abstract string GetEnemyType(); 
 }
