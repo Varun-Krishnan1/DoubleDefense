@@ -110,7 +110,7 @@ public class GunController : Weapon
         // -- array of enemies that is in overlap circle of crosshair 
         //List<Enemy> enemies = new List<Enemy>();
 
-        CrosshairObject firstObjectFound = null; 
+        CrosshairObject firstObjectFound = null;
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -119,29 +119,33 @@ public class GunController : Weapon
             // -- if it is a crosshair object 
             if (crossObject)
             {
-                BreakableShield shield = crossObject.GetComponent<BreakableShield>(); 
-                if(shield)
+                BreakableShield shield = crossObject.GetComponent<BreakableShield>();
+                if (shield)
                 {
                     // -- override first object with shield then break loop 
                     firstObjectFound = shield;
-                    break; 
+                    break;
                 }
             }
 
             // -- if you haven't got a first object set it to this one 
-            if(!firstObjectFound)
+            if (!firstObjectFound)
             {
-                firstObjectFound = crossObject; 
+                firstObjectFound = crossObject;
             }
         }
 
-        // -- if it is targetable and it's not already marked and you have enough shots left 
-        if (firstObjectFound.isTargetable() && !firstObjectFound.isMarked() && shotsLeft > 0)
+        if (firstObjectFound)
         {
-            StartCoroutine(ShootAfterDelay(firstObjectFound));
-            shotsLeft -= 1;
-            bulletCounter.SetBulletNumber(shotsLeft);
+            // -- if it is targetable and it's not already marked and you have enough shots left 
+            if (firstObjectFound.isTargetable() && !firstObjectFound.isMarked() && shotsLeft > 0)
+            {
+                StartCoroutine(ShootAfterDelay(firstObjectFound));
+                shotsLeft -= 1;
+                bulletCounter.SetBulletNumber(shotsLeft);
+            }
         }
+        
 
         // -- if shots are now zero then start timer
         if (shotsLeft == 0)

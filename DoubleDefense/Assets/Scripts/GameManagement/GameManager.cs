@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     // -- for singleton pattern 
     public static GameManager instance = null;
 
+    // -- get possible configurations based on wave number
+    public EnemyConfigurations configs; 
+
     [Header("Game Statistics")]
     public int maxEnemiesAllowed;
-    public float timeBetweenSubWaves; 
-
+    public int waveStartNumber;        
 
     private int waveNumber = 0;
     private int enemiesKilled;
@@ -23,7 +25,10 @@ public class GameManager : MonoBehaviour
     private int enemiesAllowed;
     private int totalEnemiesAllowed; 
 
-    private int waveGoal; 
+    private int waveGoal;
+
+    // -- this wave's characteristics 
+    EnemyConfigurations.WaveConfiguration waveConfig;
 
     // ---- START METHODS ----
 
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        waveNumber = waveStartNumber - 1; 
         NewWave(); 
     }
 
@@ -58,7 +64,10 @@ public class GameManager : MonoBehaviour
         enemiesAllowed = 0;
 
         waveNumber += 1;
-        waveGoal += 5;
+
+        // -- get allowable configurations based on wavenumber 
+        waveConfig = configs.GetAllowableTypesBasedOnWave(waveNumber);
+        waveGoal = waveConfig.goal;
 
         StartCoroutine(UIManager.instance.NewWaveUI(waveNumber, waveGoal, maxEnemiesAllowed));
     }
@@ -66,8 +75,10 @@ public class GameManager : MonoBehaviour
     // -- CALLED BY UIMANAGER AFTER NEW WAVE UI IS DONE SHOWING 
     public void NewWaveContinue()
     {
+
+
         // -- spawner setup 
-        MapSetup.instance.SetupNewWave(waveNumber, 2, timeBetweenSubWaves);
+        MapSetup.instance.SetupNewWave(waveConfig);
     }
 
     private void EndGame()

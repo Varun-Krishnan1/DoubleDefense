@@ -67,8 +67,12 @@ public class ArrowController : MonoBehaviour
 
     public void PutBackAnimation()
     {
-        this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
-        isLoaded = false; 
+        if(this.gameObject)
+        {
+            this.transform.position = this.transform.position + new Vector3(pullbackLength, 0, 0);
+            isLoaded = false;
+        }
+
     }
 
     void OnBecameInvisible()

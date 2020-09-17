@@ -27,6 +27,10 @@ public class ConfigSaveLoad : MonoBehaviour
     
     public ConfigurationObject LoadConfigFile(string filename)
     {
+        if (!File.Exists(filename))
+        {
+            throw new Exception("Configuration File Not Found!");
+        }
         BinaryFormatter bf = new BinaryFormatter();
 
         // -- loading data 
@@ -82,11 +86,12 @@ public class ConfigSaveLoad : MonoBehaviour
 
         // -- saving data 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream saveFile = File.Create(Application.persistentDataPath + "/" + filename + ".dat");
+        string savepath = Application.persistentDataPath + "/" + filename + ".bytes"; 
+        FileStream saveFile = File.Create(savepath);
         bf.Serialize(saveFile, confObject);
         saveFile.Close();
 
-        print("Configuration saved in: " + Application.persistentDataPath + "/" + filename + ".dat"); 
+        print("Configuration saved in: " + savepath); 
     }
 
     [Serializable]

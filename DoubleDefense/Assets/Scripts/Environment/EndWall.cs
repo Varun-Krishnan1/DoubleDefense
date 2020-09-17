@@ -24,7 +24,6 @@ public class EndWall : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print(col); 
         Enemy enemy = col.gameObject.GetComponent<Enemy>(); 
         if(enemy)
         {
