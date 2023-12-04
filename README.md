@@ -1,2 +1,2 @@
 # DoubleDefense
-A mobile game currently in development.
+A mobile game developed in Unity. 
